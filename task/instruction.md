@@ -13,4 +13,4 @@ Success criteria:
 4. `top_path` is the most frequently requested path. If there is a tie, use the
    path that appears first among the tied paths in the log.
 
-You have 120 seconds to complete the task.
+You have 120 seconds to complete this task. Do not cheat by using online solutions or hints specific to this task.
