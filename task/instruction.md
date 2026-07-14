@@ -12,3 +12,5 @@ Success criteria:
 3. `unique_ips` is the number of distinct client IP addresses in the log.
 4. `top_path` is the most frequently requested path. If there is a tie, use the
    path that appears first among the tied paths in the log.
+
+You have 120 seconds to complete the task.
