@@ -1,3 +1,5 @@
+"""Verifier tests for the access-log JSON report."""
+
 import json
 from pathlib import Path
 
@@ -6,15 +8,16 @@ REPORT_PATH = Path("/app/report.json")
 
 
 def load_report():
+    """Load the generated report from the required artifact path."""
     assert REPORT_PATH.exists(), "no /app/report.json found"
     try:
-        return json.loads(REPORT_PATH.read_text())
+        return json.loads(REPORT_PATH.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
         raise AssertionError(f"/app/report.json is not valid JSON: {exc}") from exc
 
 
 def test_report_schema():
-    """Verifies instruction success criterion 1: /app/report.json is a JSON object with exactly the required keys."""
+    """Verifies criterion 1: /app/report.json is a JSON object with the required keys."""
     report = load_report()
     assert isinstance(report, dict), "report must be a JSON object"
     assert set(report) == {"total_requests", "unique_ips", "top_path"}

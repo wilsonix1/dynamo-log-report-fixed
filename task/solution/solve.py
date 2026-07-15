@@ -1,9 +1,12 @@
+"""Build the access-log summary report for the oracle solution."""
+
 import json
 import re
 from collections import Counter
+from pathlib import Path
 
 paths, ips, total = Counter(), set(), 0
-with open("/app/access.log") as f:
+with Path("/app/access.log").open(encoding="utf-8") as f:
     for line in f:
         line = line.strip()
         if not line:
@@ -14,7 +17,7 @@ with open("/app/access.log") as f:
         if m:
             paths[m.group(1)] += 1
 
-with open("/app/report.json", "w") as out:
+with Path("/app/report.json").open("w", encoding="utf-8") as out:
     json.dump(
         {
             "total_requests": total,
